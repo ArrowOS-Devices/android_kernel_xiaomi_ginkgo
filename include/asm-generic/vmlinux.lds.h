@@ -65,16 +65,30 @@
  * .data. We don't want to pull in .data..other sections, which Linux
  * has defined. Same for text and bss.
  */
-#ifdef CONFIG_LD_DEAD_CODE_DATA_ELIMINATION
+#if defined(CONFIG_LD_DEAD_CODE_DATA_ELIMINATION) || defined(CONFIG_LTO_CLANG)
 #define TEXT_MAIN .text .text.[0-9a-zA-Z_]*
 #define TEXT_CFI_MAIN .text.cfi .text.[0-9a-zA-Z_]*.cfi
-#define DATA_MAIN .data .data.[0-9a-zA-Z_]* .data..compoundliteral* .data..L_MergedGlobals*
-#define BSS_MAIN .bss .bss.[0-9a-zA-Z_]* .bss..compoundliteral* .bss..L_MergedGlobals*
+#define DATA_MAIN .data .data.[0-9a-zA-Z_]* .data..compoundliteral* .data..L*
+#define BSS_MAIN .bss .bss.[0-9a-zA-Z_]* .data..compoundliteral* .data..L*
 #else
 #define TEXT_MAIN .text
 #define TEXT_CFI_MAIN .text.cfi
 #define DATA_MAIN .data
 #define BSS_MAIN .bss
+#endif
+
+/*
+ * RODATA_MAIN is not used because existing code already defines .rodata.x
+ * sections to be brought in with rodata.
+ */
+#ifdef CONFIG_LD_DEAD_CODE_DATA_ELIMINATION
+#define SDATA_MAIN .sdata .sdata.[0-9a-zA-Z_]*
+#define RODATA_MAIN .rodata .rodata.[0-9a-zA-Z_]*
+#define SBSS_MAIN .sbss .sbss.[0-9a-zA-Z_]*
+#else
+#define SDATA_MAIN .sdata
+#define RODATA_MAIN .rodata
+#define SBSS_MAIN .sbss
 #endif
 
 /*
