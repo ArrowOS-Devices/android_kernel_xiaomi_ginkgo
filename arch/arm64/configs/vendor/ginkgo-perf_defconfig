@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm64 4.14.194 Kernel Configuration
+# Linux/arm64 4.14.195 Kernel Configuration
 #
 CONFIG_ARM64=y
 CONFIG_64BIT=y
@@ -2460,6 +2460,7 @@ CONFIG_SPI_SPIDEV=y
 # CONFIG_SPI_LOOPBACK_TEST is not set
 # CONFIG_SPI_TLE62X0 is not set
 # CONFIG_SPI_SLAVE is not set
+# CONFIG_SPI_DYNAMIC is not set
 CONFIG_SPMI=y
 CONFIG_SPMI_MSM_PMIC_ARB=y
 # CONFIG_SPMI_MSM_PMIC_ARB_DEBUG is not set
@@ -4385,7 +4386,6 @@ CONFIG_RNDIS_IPA=y
 # CONFIG_MSM_11AD is not set
 # CONFIG_SEEMP_CORE is not set
 # CONFIG_IPA3_REGDUMP is not set
-# CONFIG_QCOM_ETHERNET_UTIL is not set
 CONFIG_CLKDEV_LOOKUP=y
 CONFIG_HAVE_CLK_PREPARE=y
 CONFIG_COMMON_CLK=y
