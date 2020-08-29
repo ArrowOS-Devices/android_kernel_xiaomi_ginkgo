@@ -31,10 +31,12 @@ zip -r9 "../$ZIPNAME" * -x '*.git*' README.md *placeholder
 cd ..
 rm -rf AnyKernel3
 echo -e "\nCompleted in $((SECONDS / 60)) minute(s) and $((SECONDS % 60)) second(s) !"
-echo "Zip: $ZIPNAME"
 if command -v gdrive &> /dev/null; then
 gdrive upload --share $ZIPNAME
+else
+echo "Zip: $ZIPNAME"
 fi
+rm -rf out
 else
 echo -e "\nCompilation failed!"
 fi
