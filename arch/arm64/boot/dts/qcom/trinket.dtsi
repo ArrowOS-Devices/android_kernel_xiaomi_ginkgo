@@ -930,12 +930,14 @@
 		reg-names = "osm_pwrcl_base", "osm_perfcl_base";
 		#clock-cells = <1>;
 		qcom,cpufreq-table-0 =
+			<300000>,
 			<864000>,
 			<1017600>,
 			<1305600>,
 			<1612800>,
 			<1804800>;
 		qcom,cpufreq-table-4 =
+			<300000>,
 			<652800>,
 			<1056000>,
 			<1401600>,
