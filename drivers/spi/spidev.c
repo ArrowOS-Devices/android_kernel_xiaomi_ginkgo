@@ -661,10 +661,6 @@ static int spidev_release(struct inode *inode, struct file *filp)
 	/* last close? */
 	spidev->users--;
 	if (!spidev->users) {
-		/* ... after we unbound from the underlying device? */
-		dofree = (spidev->spi == NULL);
-		spin_unlock_irq(&spidev->spi_lock);
-
 		if (dofree)
 			kfree(spidev);
 		else
