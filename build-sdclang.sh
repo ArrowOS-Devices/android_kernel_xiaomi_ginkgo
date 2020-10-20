@@ -3,14 +3,6 @@ GCCPATH="$HOME/bsp/LA.QSSI/LINUX/android/prebuilts/gcc/linux-x86/aarch64/aarch64
 SECONDS=0
 ZIPNAME="QuicksilveRV2-ginkgo-$(date '+%Y%m%d-%H%M').zip"
 
-if ! [ -d "$HOME/proton" ]; then
-echo "Proton clang not found! Cloning..."
-if ! git clone -q --depth=1 --single-branch https://github.com/kdrag0n/proton-clang ~/proton; then
-echo "Cloning failed! Aborting..."
-exit 1
-fi
-fi
-
 mkdir -p out
 make O=out ARCH=arm64 vendor/ginkgo-perf_defconfig
 
