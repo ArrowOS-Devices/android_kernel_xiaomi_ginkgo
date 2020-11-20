@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm64 4.14.203 Kernel Configuration
+# Linux/arm64 4.14.207 Kernel Configuration
 #
 CONFIG_ARM64=y
 CONFIG_64BIT=y
@@ -284,7 +284,7 @@ CONFIG_LD_LLD=y
 CONFIG_LTO=y
 CONFIG_ARCH_SUPPORTS_LTO_CLANG=y
 CONFIG_ARCH_SUPPORTS_THINLTO=y
-# CONFIG_THINLTO is not set
+CONFIG_THINLTO=y
 # CONFIG_LTO_NONE is not set
 CONFIG_LTO_CLANG=y
 # CONFIG_CFI_CLANG is not set
