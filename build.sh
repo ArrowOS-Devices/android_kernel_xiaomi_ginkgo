@@ -11,7 +11,7 @@ fi
 fi
 
 mkdir -p out
-make O=out ARCH=arm64 vendor/ginkgo-perf_defconfig
+ARCH=arm64 scripts/kconfig/merge_config.sh -O out arch/arm64/configs/vendor/ginkgo-perf_defconfig arch/arm64/configs/vendor/ginkgo-perf_proton_defconfig
 
 if [[ $1 == "-r" || $1 == "--regen" ]]; then
 cp out/.config arch/arm64/configs/vendor/ginkgo-perf_defconfig
