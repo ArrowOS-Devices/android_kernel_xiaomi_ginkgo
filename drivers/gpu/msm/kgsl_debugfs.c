@@ -238,7 +238,7 @@ void kgsl_process_init_debugfs(struct kgsl_process_private *private)
 	unsigned char name[16];
 	struct dentry *dentry;
 
-	snprintf(name, sizeof(name), "%d", private->pid);
+	snprintf(name, sizeof(name), "%d", pid_nr(private->pid));
 
 	private->debug_root = debugfs_create_dir(name, proc_d_debugfs);
 
@@ -256,11 +256,21 @@ void kgsl_process_init_debugfs(struct kgsl_process_private *private)
 	}
 
 	dentry = debugfs_create_file("mem", 0444, private->debug_root,
-		(void *) ((unsigned long) private->pid), &process_mem_fops);
+		(void *) ((unsigned long) pid_nr(private->pid)),
+		&process_mem_fops);
 
 	if (IS_ERR_OR_NULL(dentry))
 		WARN((dentry == NULL),
 			"Unable to create 'mem' file for %s\n", name);
+
+	dentry = debugfs_create_file("sparse_mem", 0444, private->debug_root,
+		(void *) ((unsigned long) pid_nr(private->pid)),
+		&process_sparse_mem_fops);
+
+	if (IS_ERR_OR_NULL(dentry))
+		WARN((dentry == NULL),
+			"Unable to create 'sparse_mem' file for %s\n", name);
+
 }
 
 void kgsl_core_debugfs_init(void)
