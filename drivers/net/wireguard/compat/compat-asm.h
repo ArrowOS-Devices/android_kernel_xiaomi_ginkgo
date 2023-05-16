@@ -51,9 +51,13 @@
 #undef pull
 #endif
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 4, 76) && !defined(ISRHEL8) && !defined(SYM_FUNC_START)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 4, 76) && !defined(ISRHEL8)
+#ifndef SYM_FUNC_START
 #define SYM_FUNC_START ENTRY
+#endif
+#ifndef SYM_FUNC_END
 #define SYM_FUNC_END ENDPROC
+#endif
 #endif
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 5, 0)
