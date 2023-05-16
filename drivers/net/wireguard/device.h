@@ -63,8 +63,10 @@ void wg_device_uninit(void);
  * where virtually all code that deals with GSO segs can benefit, around ~30
  * drivers as of writing.
  */
+#ifndef skb_list_walk_safe
 #define skb_list_walk_safe(first, skb, next)                                   \
 	for (skb = first, next = skb->next; skb;                               \
 	     skb = next, next = skb ? skb->next : NULL)
+#endif
 
 #endif /* _WG_DEVICE_H */
