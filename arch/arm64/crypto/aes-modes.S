@@ -252,6 +252,12 @@ AES_ENTRY(aes_ctr_encrypt)
 	rev		x7, x7
 	ins		v4.d[0], x7
 	b		.Lctrcarrydone
+
+.Laddends:
+	.word	0x00000001
+	.word	0x00000002
+	.word	0x00000003
+	.word	0x00000000
 AES_ENDPROC(aes_ctr_encrypt)
 	.ltorg
 

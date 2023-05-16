@@ -770,6 +770,9 @@ i2c_new_device(struct i2c_adapter *adap, struct i2c_board_info const *info)
 	client->dev.of_node = info->of_node;
 	client->dev.fwnode = info->fwnode;
 
+	if (client->flags & I2C_CLIENT_ASYNC_SUSPEND)
+		device_enable_async_suspend(&client->dev);
+
 	i2c_dev_set_name(adap, client);
 
 	if (info->properties) {
@@ -2243,8 +2246,9 @@ void i2c_put_adapter(struct i2c_adapter *adap)
 	if (!adap)
 		return;
 
-	put_device(&adap->dev);
 	module_put(adap->owner);
+	/* Should be last, otherwise we risk use-after-free with 'adap' */
+	put_device(&adap->dev);
 }
 EXPORT_SYMBOL(i2c_put_adapter);
 
